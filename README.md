@@ -1,2 +1,3 @@
 # openshift
+
 OpenShift templates
