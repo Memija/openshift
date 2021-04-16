@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ${application_name}-server-cert
+  labels:
+    app: ${application_name}
+    environment: ${environment_name}
+stringData:
+  tls.crt: >-
+    -----BEGIN CERTIFICATE-----
+
+    ${server_certificate.server_cert_value}
+
+    -----END CERTIFICATE-----
+  tls.key: >-
+    -----BEGIN RSA PRIVATE KEY-----
+
+    ${server_certificate.server_key_value}
+
+    -----END RSA PRIVATE KEY-----
+type: Opaque

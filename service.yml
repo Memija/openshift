@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${application_name}
+  labels:
+    app: ${application_name}
+    environment: ${environment_name}
+  annotations:
+    service.alpha.openshift.io/serving-cert-secret-name: ${application_name}-server-cert
+    service.alpha.openshift.io/inject-module: "true"
+spec:
+  ports:
+  - name: 8009-tcp
+    port: 8009
+    protocol: TCP
+    targetPort: 8009
+  - name: 80-tcp
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  - name: 443-tcp
+    port: 443
+    protocol: TCP
+    targetPort: 8443
+  selector:
+    deploymentConfig: ${application_name}
