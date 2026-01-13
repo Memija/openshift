@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ${application_name}-trust-store
+  name: ${application_name}-storage
   labels:
     app: ${application_name}
     environment: ${environment_name}

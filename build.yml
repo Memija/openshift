@@ -9,7 +9,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: ${application_name}-build:latest
+      name: ${application_name}:latest
   resources:
     limits:
       cpu: ${cpu_limit_value}

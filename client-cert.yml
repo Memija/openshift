@@ -7,5 +7,5 @@ metadata:
     environment: ${environment_name}
 data:
   client_cert.pfx: >-
-    {key_store.client_cert_value}
+    ${key_store.client_cert_value}
 type: Opaque

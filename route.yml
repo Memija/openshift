@@ -6,9 +6,9 @@ metadata:
     app: ${application_name}
     environment: ${environment_name}
 spec:
-  host: {route_host_name}
+  host: ${route_host_name}
   port:
-    targetPort: {route.target_port}
+    targetPort: ${route.target_port}
   tls:
     termination: passthrough
   to:
