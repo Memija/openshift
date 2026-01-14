@@ -30,6 +30,7 @@ spec:
                   fieldPath: metadata.name
           image: ${application_name}:latest
           name: ${application_name}
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -37,6 +38,16 @@ spec:
               protocol: TCP
             - containerPort: 8009
               protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 3
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 3
           resources:
             limits:
               cpu: ${cpu_limit_value}
@@ -56,26 +67,6 @@ spec:
               readOnly: true
             - mountPath: /mnt/storage
               name: ${application_name}-storage
-      # Init container commented out due to missing image and command configuration.
-      # initContainers:
-      #   - name: ${application_name}-init-cont
-      #     resources:
-      #       limits:
-      #         cpu: ${cpu_limit_value}
-      #         memory: ${memory_limit_value}
-      #       requests:
-      #         cpu: ${cpu_request_value}
-      #         memory: ${memory_request_value}
-      #     volumeMounts:
-      #       - mountPath: /mnt/client-cert
-      #         name: ${application_name}-client-cert
-      #         readOnly: true
-      #       - mountPath: /mnt/server-cert
-      #         name: ${application_name}-server-cert
-      #         readOnly: true
-      #       - mountPath: /mnt/trust-store
-      #         name: ${application_name}-trust-store
-      #         readOnly: true
       volumes:
         - name: ${application_name}-client-cert
           secret:
