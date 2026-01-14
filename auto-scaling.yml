@@ -6,10 +6,10 @@ metadata:
     app: ${application_name}
     environment: ${environment_name}
 spec:
-  maxReplicas: 2
-  minReplicas: 1
+  maxReplicas: ${hpa_max_replicas}
+  minReplicas: ${hpa_min_replicas}
   scaleTargetRef:
     apiVersion: apps.openshift.io/v1
     kind: DeploymentConfig
     name: ${application_name}
-  targetCPUUtilizationPercentage: 75
+  targetCPUUtilizationPercentage: ${hpa_target_cpu_percent}
