@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${application_name}-config
+  labels:
+    app: ${application_name}
+    environment: ${environment_name}
+data:
+  application.properties: |
+    # Add application properties here
+    example.property=value

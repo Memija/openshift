@@ -1,0 +1,13 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ${application_name}-pdb
+  labels:
+    app: ${application_name}
+    environment: ${environment_name}
+spec:
+  minAvailable: ${pdb_min_available}
+  selector:
+    matchLabels:
+      app: ${application_name}
+      deploymentConfig: ${application_name}
